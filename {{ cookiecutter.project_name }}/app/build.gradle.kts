@@ -15,7 +15,7 @@ android {
         versionCode = {{ cookiecutter.version_code }}
         versionName = "{{ cookiecutter.version_name }}"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "{{ cookiecutter.test_instrumentation_runner }}"
     }
 
     buildTypes {
@@ -28,11 +28,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_{{ cookiecutter.java_version }}
+        targetCompatibility = JavaVersion.VERSION_{{ cookiecutter.java_version }}
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "{{ cookiecutter.java_version }}"
     }
     buildFeatures {
         compose = true

@@ -10,5 +10,16 @@
     "description": "A simple Hello World Android app",
     "author_name": "AppInv",
     "author_email": "support@appinv.com",
-    "website": "https://appinv.com"
+    "website": "https://appinv.com",
+    "java_version": "11",
+    "gradle_version": "8.11.1",
+    "test_instrumentation_runner": "androidx.test.runner.AndroidJUnitRunner",
+    "typography_font_size": "16",
+    "typography_line_height": "24",
+    "typography_letter_spacing": "0.5",
+    "label_small_font_size": "11",
+    "label_small_line_height": "16",
+    "title_large_font_size": "22",
+    "title_large_line_height": "28",
+    "title_large_letter_spacing": "0"
 } 

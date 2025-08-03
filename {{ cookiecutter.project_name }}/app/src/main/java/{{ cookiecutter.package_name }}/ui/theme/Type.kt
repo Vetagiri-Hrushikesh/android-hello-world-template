@@ -11,24 +11,24 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        fontSize = {{ cookiecutter.typography_font_size }}.sp,
+        lineHeight = {{ cookiecutter.typography_line_height }}.sp,
+        letterSpacing = {{ cookiecutter.typography_letter_spacing }}.sp
     )
     /* Other default text styles to override
     titleLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
+        fontSize = {{ cookiecutter.title_large_font_size }}.sp,
+        lineHeight = {{ cookiecutter.title_large_line_height }}.sp,
+        letterSpacing = {{ cookiecutter.title_large_letter_spacing }}.sp
     ),
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
+        fontSize = {{ cookiecutter.label_small_font_size }}.sp,
+        lineHeight = {{ cookiecutter.label_small_line_height }}.sp,
+        letterSpacing = {{ cookiecutter.typography_letter_spacing }}.sp
     )
     */
 ) 
