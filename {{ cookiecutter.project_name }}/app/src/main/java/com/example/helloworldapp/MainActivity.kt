@@ -1,4 +1,4 @@
-package com.example.helloworld
+package {{ cookiecutter.package_name }}
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,14 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.helloworld.ui.theme.HelloWorldTheme
+import {{ cookiecutter.package_name }}.ui.theme.{{ cookiecutter.app_name }}Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            HelloWorldTheme {
+            {{ cookiecutter.app_name }}Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
                         name = "Android",
@@ -41,7 +41,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    HelloWorldTheme {
+    {{ cookiecutter.app_name }}Theme {
         Greeting("Android")
     }
-}
+} 

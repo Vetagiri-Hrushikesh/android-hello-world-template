@@ -1,4 +1,4 @@
-package com.example.helloworld.ui.theme
+package {{ cookiecutter.package_name }}.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
@@ -31,4 +31,4 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     )
     */
-)
+) 

@@ -1,4 +1,4 @@
-package com.example.helloworld.ui.theme
+package {{ cookiecutter.package_name }}.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -34,7 +34,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun HelloWorldTheme(
+fun {{ cookiecutter.app_name }}Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
@@ -55,4 +55,4 @@ fun HelloWorldTheme(
         typography = Typography,
         content = content
     )
-}
+} 
