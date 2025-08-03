@@ -1,0 +1,14 @@
+{
+    "app_name": "HelloWorldApp",
+    "package_name": "com.example.helloworldapp",
+    "project_name": "HelloWorldApp",
+    "min_sdk": "24",
+    "target_sdk": "34",
+    "compile_sdk": "34",
+    "version_code": "1",
+    "version_name": "1.0.0",
+    "description": "A simple Hello World Android app",
+    "author_name": "AppInv",
+    "author_email": "support@appinv.com",
+    "website": "https://appinv.com"
+} 
