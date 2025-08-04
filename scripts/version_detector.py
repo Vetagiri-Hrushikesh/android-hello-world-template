@@ -1,0 +1,174 @@
+#!/usr/bin/env python3
+"""
+Version detection script for Android development environment.
+This script detects installed versions of Android development tools.
+"""
+
+import subprocess
+import sys
+import re
+from pathlib import Path
+
+def run_command(command):
+    """Run a command and return the output."""
+    try:
+        result = subprocess.run(command, shell=True, capture_output=True, text=True, timeout=10)
+        return result.stdout.strip()
+    except (subprocess.TimeoutExpired, subprocess.CalledProcessError, FileNotFoundError):
+        return None
+
+def detect_java_version():
+    """Detect Java version."""
+    java_version = run_command("java -version 2>&1")
+    if java_version:
+        # Extract version from output like "openjdk version "11.0.12" 2021-07-20"
+        match = re.search(r'version "([^"]+)"', java_version)
+        if match:
+            return match.group(1)
+    return "Not detected"
+
+def detect_kotlin_version():
+    """Detect Kotlin version."""
+    kotlin_version = run_command("kotlin -version 2>&1")
+    if kotlin_version:
+        # Extract version from output like "Kotlin version 1.9.0-release-358 (JRE 11.0.12+7-LTS)"
+        match = re.search(r'Kotlin version ([^\s]+)', kotlin_version)
+        if match:
+            return match.group(1)
+    return "Not detected"
+
+def detect_gradle_version():
+    """Detect Gradle version."""
+    gradle_version = run_command("gradle --version 2>&1")
+    if gradle_version:
+        # Extract version from output like "Gradle 8.11.1"
+        match = re.search(r'Gradle ([^\s]+)', gradle_version)
+        if match:
+            return match.group(1)
+    return "Not detected"
+
+def detect_android_sdk():
+    """Detect Android SDK location and version."""
+    # Try common Android SDK locations
+    sdk_locations = [
+        Path.home() / "Library/Android/sdk",  # macOS
+        Path.home() / "Android/Sdk",          # Linux
+        Path("C:/Users") / Path.home().name / "AppData/Local/Android/Sdk",  # Windows
+    ]
+    
+    for sdk_path in sdk_locations:
+        if sdk_path.exists():
+            # Try to get build tools version
+            build_tools_path = sdk_path / "build-tools"
+            if build_tools_path.exists():
+                versions = [d.name for d in build_tools_path.iterdir() if d.is_dir()]
+                if versions:
+                    return str(sdk_path), max(versions)
+            return str(sdk_path), "Not detected"
+    
+    return "Not found", "Not detected"
+
+def detect_android_studio():
+    """Detect Android Studio version."""
+    # Try to find Android Studio
+    studio_paths = [
+        "/Applications/Android Studio.app/Contents/MacOS/studio",  # macOS
+        str(Path.home() / "android-studio/bin/studio.sh"),         # Linux
+        "C:/Program Files/Android/Android Studio/bin/studio64.exe", # Windows
+    ]
+    
+    for studio_path in studio_paths:
+        if Path(studio_path).exists():
+            version_output = run_command(f'"{studio_path}" --version 2>&1')
+            if version_output:
+                # Extract version from output
+                match = re.search(r'Android Studio ([^\s]+)', version_output)
+                if match:
+                    return match.group(1)
+            return "Installed (version not detected)"
+    
+    return "Not detected"
+
+def generate_requirements_md():
+    """Generate requirements.md content."""
+    java_ver = detect_java_version()
+    kotlin_ver = detect_kotlin_version()
+    gradle_ver = detect_gradle_version()
+    sdk_path, sdk_ver = detect_android_sdk()
+    studio_ver = detect_android_studio()
+    
+    content = f"""# Android Development Requirements
+
+## Detected Versions
+
+| Tool | Version | Status |
+|------|---------|--------|
+| **Java** | {java_ver} | {'✅' if java_ver != 'Not detected' else '❌'} |
+| **Kotlin** | {kotlin_ver} | {'✅' if kotlin_ver != 'Not detected' else '❌'} |
+| **Gradle** | {gradle_ver} | {'✅' if gradle_ver != 'Not detected' else '❌'} |
+| **Android SDK** | {sdk_ver} | {'✅' if sdk_path != 'Not found' else '❌'} |
+| **Android Studio** | {studio_ver} | {'✅' if studio_ver != 'Not detected' else '❌'} |
+
+## SDK Location
+```
+{sdk_path}
+```
+
+## Recommended Versions
+
+- **Java**: 11 or higher
+- **Kotlin**: 1.9.0 or higher
+- **Gradle**: 8.0 or higher
+- **Android SDK**: API 35 (Android 15)
+- **Android Studio**: Latest stable version
+
+## Installation Instructions
+
+### Java
+```bash
+# macOS (using Homebrew)
+brew install openjdk@11
+
+# Ubuntu/Debian
+sudo apt update
+sudo apt install openjdk-11-jdk
+
+# Windows
+# Download from: https://adoptium.net/
+```
+
+### Android Studio
+Download from: https://developer.android.com/studio
+
+### Android SDK
+Install via Android Studio → SDK Manager
+
+### Gradle
+```bash
+# macOS (using Homebrew)
+brew install gradle
+
+# Or use the wrapper included in the project
+./gradlew build
+```
+
+## Verification
+
+Run these commands to verify your setup:
+
+```bash
+java -version
+kotlin -version
+gradle --version
+./gradlew build
+```
+
+---
+*This file was auto-generated by the Android Hello World Template*
+"""
+    
+    return content
+
+if __name__ == "__main__":
+    requirements_content = generate_requirements_md()
+    print(requirements_content) 

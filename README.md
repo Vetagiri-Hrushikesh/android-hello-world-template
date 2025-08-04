@@ -1,173 +1,195 @@
-# Android Hello World CookieCutter Template
+# Android Hello World Template
 
-A modern Android project template using Jetpack Compose, Kotlin, and the latest Android SDK. This template generates a complete Android project with customizable package names, app names, and configuration.
+A professional, production-ready cookiecutter template for creating Android Hello World applications using modern Android development practices.
 
-## Features
+## 🚀 Features
 
-- 🚀 **Jetpack Compose** - Modern UI toolkit
-- 📱 **Android SDK 35** - Latest Android APIs
-- 🎨 **Material 3** - Modern design system
-- 🧪 **Testing Setup** - Unit and instrumented tests
-- ⚡ **Kotlin** - Modern Android development
-- 🔧 **Fully Customizable** - Package names, app names, SDK versions
+- **Modern Android Development**: Kotlin + Jetpack Compose
+- **Clean Architecture**: Well-structured project layout
+- **Professional Setup**: Optimized build configuration
+- **Smart Variables**: Only essential, used variables (24 total)
+- **Auto-Configuration**: Automatic project setup and naming
+- **Testing Ready**: Unit tests and UI tests included
+- **Material Design 3**: Modern UI components
 
-## Prerequisites
+## 📋 Requirements
 
-- **CookieCutter**: Install cookiecutter if you haven't already
-  ```bash
-  pip install cookiecutter
-  ```
-- **Android Studio**: Latest version with Android SDK 35
-- **Java 11+**: Required for Android development
-
-## Quick Start
-
-### 1. Generate a New Android Project
+Run the version detection script to check your environment:
 
 ```bash
+python scripts/version_detector.py > requirements.md
+```
+
+### Minimum Requirements
+- **Java**: 11 or higher
+- **Kotlin**: 1.9.0 or higher
+- **Gradle**: 8.0 or higher
+- **Android SDK**: API 35 (Android 15)
+- **Android Studio**: Latest stable version
+
+## 🛠️ Installation
+
+### 1. Install Cookiecutter
+```bash
+pip install cookiecutter
+```
+
+### 2. Generate Project
+```bash
+# From GitHub
 cookiecutter https://github.com/Vetagiri-Hrushikesh/android-hello-world-template.git
+
+# Or from local directory
+cookiecutter android-hello-world-template
 ```
 
-### 2. Follow the Interactive Prompts
+### 3. Follow the Prompts
+The template will ask for 24 essential configuration values:
 
-The template will ask you for the following information:
+| Category | Variables | Description |
+|----------|-----------|-------------|
+| **Project** | 4 | Name, package, description, author info |
+| **Build** | 8 | SDK versions, Java version, Gradle config |
+| **UI** | 12 | Typography, navigation, theme settings |
 
-| Prompt | Description | Default |
-|--------|-------------|---------|
-| `app_name` | Name of your Android app | HelloWorldApp |
-| `package_name` | Java package name (e.g., com.company.app) | com.example.helloworldapp |
-| `project_name` | Project directory name | HelloWorldApp |
-| `min_sdk` | Minimum Android SDK version | 24 |
-| `target_sdk` | Target Android SDK version | 35 |
-| `compile_sdk` | Compile SDK version | 35 |
-| `version_code` | App version code | 1 |
-| `version_name` | App version name | 1.0.0 |
-| `description` | App description | A simple Hello World Android app |
-| `author_name` | Your name or company | AppInv |
-| `author_email` | Your email | support@appinv.com |
-| `website` | Your website | https://appinv.com |
+## 📁 Project Structure
 
-### 3. Example Usage
-
-```bash
-$ cookiecutter https://github.com/Vetagiri-Hrushikesh/android-hello-world-template.git
-  [1/12] app_name (HelloWorldApp): MyAwesomeApp
-  [2/12] package_name (com.example.helloworldapp): com.mycompany.myawesomeapp
-  [3/12] project_name (HelloWorldApp): MyAwesomeApp
-  [4/12] min_sdk (24): 
-  [5/12] target_sdk (35): 
-  [6/12] compile_sdk (35): 
-  [7/12] version_code (1): 
-  [8/12] version_name (1.0.0): 
-  [9/12] description (A simple Hello World Android app): My awesome Android app
-  [10/12] author_name (AppInv): My Company
-  [11/12] author_email (support@appinv.com): dev@mycompany.com
-  [12/12] website (https://appinv.com): https://mycompany.com
+```
+{{cookiecutter.project_name}}/
+├── app/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/{{cookiecutter.package_name}}/
+│   │   │   │   ├── MainActivity.kt
+│   │   │   │   └── ui/theme/
+│   │   │   └── res/
+│   │   ├── test/
+│   │   └── androidTest/
+│   └── build.gradle.kts
+├── gradle/
+├── build.gradle.kts
+└── settings.gradle.kts
 ```
 
-## Testing Your Generated Project
+## 🎯 What You Get
 
-### 1. Open in Android Studio
+### ✅ Ready-to-Run App
+- **Hello World Screen**: Professional UI with Material Design 3
+- **Version Display**: Shows app version and welcome message
+- **Responsive Layout**: Works on all screen sizes
+- **Dark/Light Theme**: Automatic theme support
 
-1. Launch Android Studio
-2. Click "Open an existing Android Studio project"
-3. Navigate to your generated project folder and select it
-4. Wait for the project to sync and build
+### ✅ Development Setup
+- **Gradle Wrapper**: No need to install Gradle globally
+- **Dependencies**: All necessary Android libraries included
+- **Build Configuration**: Optimized for development and release
+- **Code Style**: Consistent Kotlin coding standards
 
-### 2. Build the Project
+### ✅ Testing Framework
+- **Unit Tests**: JUnit 4 setup with example test
+- **UI Tests**: Espresso setup with example test
+- **Test Runner**: Configured for Android testing
 
+## 🚀 Quick Start
+
+1. **Generate the project** (see Installation above)
+2. **Open in Android Studio**:
+   ```bash
+   cd {{cookiecutter.project_name}}
+   # Open Android Studio and select "Open an existing project"
+   ```
+3. **Run the app**:
+   - Select a device/emulator
+   - Click the Run button (▶️) or press `Shift + F10`
+
+## 🔧 Customization
+
+### Typography
+The template uses configurable typography variables:
+- `typography_font_size`: Base font size (16sp)
+- `title_large_font_size`: Title font size (22sp)
+- `label_small_font_size`: Small text size (11sp)
+
+### Navigation
+- `navigation_style`: Choose between "edge_to_edge" or standard navigation
+
+### Build Configuration
+- `min_sdk`: Minimum Android API level (24)
+- `target_sdk`: Target Android API level (35)
+- `compile_sdk`: Compilation SDK version (35)
+
+## 📱 App Features
+
+### Main Screen
+- **Globe Icon**: Material Design icon
+- **Hello World Text**: Large, bold title
+- **Welcome Message**: App name display
+- **Version Info**: Shows current app version
+
+### UI Components
+- **Material Design 3**: Modern design system
+- **Responsive Layout**: Adapts to different screen sizes
+- **Theme Support**: Automatic dark/light mode
+- **Accessibility**: Proper content descriptions
+
+## 🧪 Testing
+
+### Unit Tests
 ```bash
-cd MyAwesomeApp
-./gradlew build
-```
-
-### 3. Run on Device/Emulator
-
-1. **Connect a device** or **start an emulator**
-2. In Android Studio, click the green "Run" button (▶️)
-3. Select your target device
-4. The app will install and launch automatically
-
-### 4. Verify the App
-
-- The app should display "Hello Android!" on the screen
-- Check that the app name in the launcher matches your `app_name`
-- Verify the package name in Android Studio matches your `package_name`
-
-### 5. Run Tests
-
-```bash
-# Run unit tests
 ./gradlew test
+```
 
-# Run instrumented tests (requires device/emulator)
+### UI Tests
+```bash
 ./gradlew connectedAndroidTest
 ```
 
-## Project Structure
-
-The generated project includes:
-
-- **Main Activity**: Jetpack Compose UI with "Hello Android!" message
-- **Theme**: Material 3 theme with light/dark support
-- **Tests**: Unit and instrumented test examples
-- **Gradle Configuration**: Latest Android Gradle Plugin setup
-- **Resource Files**: Properly configured strings, themes, and manifest
-
-## Customization
-
-### Adding Dependencies
-
-Edit `app/build.gradle.kts` to add your dependencies:
-
-```kotlin
-dependencies {
-    // Your dependencies here
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    // ... more dependencies
-}
+### All Tests
+```bash
+./gradlew check
 ```
 
-### Modifying the UI
+## 📦 Build & Deploy
 
-Edit `MainActivity.kt` to customize the UI:
-
-```kotlin
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!", // Customize this message
-        modifier = modifier
-    )
-}
+### Debug Build
+```bash
+./gradlew assembleDebug
 ```
 
-### Updating Theme
+### Release Build
+```bash
+./gradlew assembleRelease
+```
 
-Edit `ui/theme/Theme.kt` to customize colors and styling.
+### APK Location
+```
+app/build/outputs/apk/debug/app-debug.apk
+```
 
-## Troubleshooting
+## 🔍 Troubleshooting
 
-### Build Errors
+### Common Issues
 
-1. **SDK Version Issues**: Ensure you have Android SDK 35 installed
-2. **Gradle Sync**: Try "File > Sync Project with Gradle Files"
-3. **Clean Build**: Run `./gradlew clean` then rebuild
+1. **Gradle Sync Failed**
+   - Check internet connection
+   - Update Android Studio
+   - Invalidate caches (File → Invalidate Caches)
 
-### App Not Installing
+2. **Build Errors**
+   - Clean project (Build → Clean Project)
+   - Rebuild project (Build → Rebuild Project)
 
-1. **Enable Developer Options** on your device
-2. **Enable USB Debugging** if using a physical device
-3. **Check device compatibility** with your `min_sdk` setting
+3. **Emulator Issues**
+   - Create new AVD in Android Studio
+   - Enable hardware acceleration
 
-### Template Issues
+### Performance Tips
 
-1. **Update CookieCutter**: `pip install --upgrade cookiecutter`
-2. **Clear Cache**: Delete `~/.cookiecutters/` folder
-3. **Re-download**: Use the full GitHub URL to re-download
+- Use Android Studio's built-in profiler
+- Enable R8 optimization for release builds
+- Use vector drawables for better performance
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -175,18 +197,18 @@ Edit `ui/theme/Theme.kt` to customize colors and styling.
 4. Test thoroughly
 5. Submit a pull request
 
-## License
+## 📄 License
 
-This template is open source and available under the MIT License.
+This template is provided as-is for educational and development purposes.
 
-## Support
+## 🙏 Acknowledgments
 
-If you encounter any issues:
-
-1. Check the troubleshooting section above
-2. Search existing GitHub issues
-3. Create a new issue with detailed information
+- **Jetpack Compose**: Modern Android UI toolkit
+- **Material Design**: Google's design system
+- **Cookiecutter**: Project template generator
 
 ---
 
-**Happy Android Development! 🚀** 
+**Made with ❤️ for the Android development community**
+
+*Generated with Android Hello World Template v1.0.0* 
